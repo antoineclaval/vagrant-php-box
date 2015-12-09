@@ -17,16 +17,19 @@ Vagrant.configure("2") do |config|
   end
   
   # Sync between the web root of the VM and the 'sites' directory
-  config.vm.synced_folder "sites/", "/var/www"
+  config.vm.synced_folder "../eMergeMockup/", "/var/www/html", group: "www-data", owner: "www-data"
 
   forward_port[1080]      # mailcatcher
   forward_port[3306]      # mysql
-  forward_port[80, 8080]  # nginx/apache
+  forward_port[80, 80]  # nginx/apache
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "default.pp"
+    puppet.module_path = "modules"
   end
 
-  config.vm.network :private_network, ip: "33.33.33.10"
+  # The Virtual Machine will be on this IP
+  config.vm.network "private_network", ip: "192.168.50.50"
+
 end
