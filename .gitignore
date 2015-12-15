@@ -1,1 +1,3 @@
-.vagrant
+.vagrant/*
+.vagrant/machines/default/virtualbox/id
+bla
