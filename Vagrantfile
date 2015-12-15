@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
   end
   
   # Sync between the web root of the VM and the 'sites' directory
-  config.vm.synced_folder "../eMergeMockup/", "/var/www/html", group: "www-data", owner: "www-data"
+  config.vm.synced_folder "../eMergeMockup/", "/var/www", group: "www-data", owner: "www-data"
 
   forward_port[1080]      # mailcatcher
   forward_port[3306]      # mysql
